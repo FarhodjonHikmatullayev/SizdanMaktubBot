@@ -11,14 +11,14 @@ forward_message_callback_data = CallbackData('forward_message', 'text', 'message
 @dp.message_handler(state=None)
 async def forward_message_function(message: types.Message):
     await bot.forward_message(
-        chat_id=2023386058,
+        chat_id=775946529,
         from_chat_id=message.chat.id,
         message_id=message.message_id
     )
     msg = await message.reply(text="📩 Maktubingiz adminga yuborildi\n"
                                    "✅ Tasdiqlangandan so'ng kanalga joylanadi")
     await bot.send_message(
-        chat_id=2023386058,
+        chat_id=775946529,
         text="Tasdiqlaysizmi?",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
