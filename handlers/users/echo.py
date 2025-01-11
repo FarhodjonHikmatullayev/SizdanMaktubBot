@@ -11,6 +11,42 @@ forward_message_callback_data = CallbackData('forward_message', 'text', 'message
 @dp.message_handler(state=None)
 async def forward_message_function(message: types.Message):
     await bot.forward_message(
+        chat_id=2023386058,
+        from_chat_id=message.chat.id,
+        message_id=message.message_id
+    )
+    msg = await message.reply(text="📩 Maktubingiz adminga yuborildi\n"
+                                   "✅ Tasdiqlangandan so'ng kanalga joylanadi")
+    await bot.send_message(
+        chat_id=2023386058,
+        text="Tasdiqlaysizmi?",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        text="✅ Confirm",
+                        callback_data=forward_message_callback_data.new(
+                            text=message.text,
+                            message_id=msg.message_id,
+                            chat_id=msg.chat.id,
+                            confirmation="confirm"
+                        )
+                    ),
+                    InlineKeyboardButton(
+                        text="❌ Reject",
+                        callback_data=forward_message_callback_data.new(
+                            text=message.text,
+                            message_id=msg.message_id,
+                            chat_id=msg.chat.id,
+                            confirmation="reject"
+                        )
+                    )
+                ],
+            ]
+        )
+    )
+
+    await bot.forward_message(
         chat_id=775946529,
         from_chat_id=message.chat.id,
         message_id=message.message_id
