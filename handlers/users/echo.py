@@ -30,12 +30,7 @@ async def forward_message_function(message: types.Message):
                     ),
                     InlineKeyboardButton(
                         text="❌ Reject",
-                        callback_data=forward_message_callback_data.new(
-                            text=message.text,
-                            message_id=msg.message_id,
-                            chat_id=msg.chat.id,
-                            confirmation="reject"
-                        )
+                        callback_data=f"reject_{forwarded_msg.message_id}_{message.text}_{msg.message_id}_{msg.chat.id}"
                     )
                 ],
             ]
