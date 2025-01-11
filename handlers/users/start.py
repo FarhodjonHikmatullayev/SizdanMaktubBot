@@ -27,11 +27,21 @@ async def bot_start(call: types.CallbackQuery, state: FSMContext):
         role = user['role']
 
     if role == 'user':
-        await call.message.answer(text="👋 Salom, xush kelibsiz!\n"
-                                       "✉️ Yo'llamoqchi bo'lgan maktubingizni yozing:")
+        await call.message.answer(text="👋Assalomu alaykum! 😊\n"
+                                       "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await call.message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                       "1. Faqat matn yuborishingiz mumkin.\n"
+                                       "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                       "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                       "Boshlash uchun matn yuboring!")
     else:
-        await call.message.answer(text="👋 Salom, xush kelibsiz!\n"
-                                       "✉️ Yo'llamoqchi bo'lgan maktubingizni yozing:")
+        await call.message.answer(text="👋Assalomu alaykum! 😊\n"
+                                       "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await call.message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                       "1. Faqat matn yuborishingiz mumkin.\n"
+                                       "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                       "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                       "Boshlash uchun matn yuboring!")
 
 
 @dp.message_handler(CommandStart(), state="*")
@@ -56,8 +66,18 @@ async def bot_start(message: types.Message, state: FSMContext):
         role = user['role']
 
     if role == 'user':
-        await message.answer(text="👋 Salom, xush kelibsiz!\n"
-                                  "✉️ Yo'llamoqchi bo'lgan maktubingizni yozing:")
+        await message.answer(text="👋Assalomu alaykum! 😊\n"
+                                  "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                  "1. Faqat matn yuborishingiz mumkin.\n"
+                                  "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                  "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                  "Boshlash uchun matn yuboring!")
     else:
-        await message.answer(text="👋 Salom, xush kelibsiz!\n"
-                                  "✉️ Yo'llamoqchi bo'lgan maktubingizni yozing:")
+        await message.answer(text="👋Assalomu alaykum! 😊\n"
+                                  "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                  "1. Faqat matn yuborishingiz mumkin.\n"
+                                  "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                  "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                  "Boshlash uchun matn yuboring!")
