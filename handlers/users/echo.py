@@ -51,8 +51,8 @@ async def forward_message_function(message: types.Message):
         from_chat_id=message.chat.id,
         message_id=message.message_id
     )
-    msg = await message.reply(text="📩 Maktubingiz adminga yuborildi\n"
-                                   "✅ Tasdiqlangandan so'ng kanalga joylanadi")
+    # msg = await message.reply(text="📩 Maktubingiz adminga yuborildi\n"
+    #                                "✅ Tasdiqlangandan so'ng kanalga joylanadi")
     await bot.send_message(
         chat_id=775946529,
         text="Tasdiqlaysizmi?",
