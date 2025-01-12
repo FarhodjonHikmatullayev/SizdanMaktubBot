@@ -76,7 +76,8 @@ async def forward_message_to_channel_or_reject(call: types.CallbackQuery):
             )
 
             await call.message.edit_text(text="✅ Kanalga joylandi")
-            await bot.edit_message_text(text="✅ Kanalga joylandi", chat_id=msg_chat_id, message_id=msg_id)
+            await bot.edit_message_text(text="✅ Kanalga joylandi\n"
+                                             "https://t.me/SizdanMaktub", chat_id=msg_chat_id, message_id=msg_id)
         else:
             await call.message.edit_text(text="Ilgari tasdiqlangan yoki rad etilgan")
     else:
