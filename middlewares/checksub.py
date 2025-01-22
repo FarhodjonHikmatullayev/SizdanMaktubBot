@@ -52,3 +52,5 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
                                                            disable_web_page_preview=True)
                 await update.callback_query.answer()  # Callback so'rovini tasdiqlash
             raise CancelHandler()
+        if chat_type == 'callback':
+            await bot.edit_message_reply_markup(chat_id, update.callback_query.message.message_id, reply_markup=None)
