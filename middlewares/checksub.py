@@ -21,7 +21,7 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
             raise CancelHandler()
 
         result = f"✨ Assalomu alaykum! 🎉\n" \
-                 f"📩 So'rovnomada ishtirok etish uchun sahifalarimizga obuna bo‘ling"
+                 f"📩 Maktub yo'llash uchun sahifalarimizga obuna bo‘ling"
         final_status = True
         channels = await db.select_all_channels()
         inline_keyboard = InlineKeyboardMarkup(row_width=1)
