@@ -48,9 +48,12 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
             if chat_type == 'message':
                 await update.message.answer(result, reply_markup=inline_keyboard, disable_web_page_preview=True)
             elif chat_type == 'callback':
-                await update.callback_query.message.answer(result, reply_markup=inline_keyboard,
-                                                           disable_web_page_preview=True)
+                # await update.callback_query.message.answer(result, reply_markup=inline_keyboard,
+                #                                            disable_web_page_preview=True)
+                await bot.edit_message_reply_markup(chat_id=chat_id,
+                                                    message_id=update.callback_query.message.message_id,
+                                                    reply_markup=inline_keyboard)
                 await update.callback_query.answer()  # Callback so'rovini tasdiqlash
             raise CancelHandler()
-        if chat_type == 'callback':
-            await bot.edit_message_reply_markup(chat_id, update.callback_query.message.message_id, reply_markup=None)
+        # if chat_type == 'callback':
+        #     await bot.edit_message_reply_markup(chat_id, update.callback_query.message.message_id, reply_markup=None)
