@@ -14,8 +14,12 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
     async def on_pre_process_update(self, update: types.Update, data: dict):
         if update.message:
             user = update.message.from_user.id
+            chat_type = 'message'
+            chat_id = update.message.chat.id
         elif update.callback_query:
             user = update.callback_query.from_user.id
+            chat_type = 'callback'
+            chat_id = update.callback_query.message.chat.id
         else:
             # Foydalanuvchi ID aniqlanmagan holatda, xato yuz bermasligi uchun qaytarib yuborish
             raise CancelHandler()
@@ -25,21 +29,26 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
         final_status = True
         channels = await db.select_all_channels()
         inline_keyboard = InlineKeyboardMarkup(row_width=1)
+
         for channel in channels:
-            chat_id = int(channel['chat_id'])
-            # chat_id = -4514999641
-            status = await subscription.check(user_id=user,
-                                              channel=chat_id)
+            chat_id_channel = int(channel['chat_id'])
+            status = await subscription.check(user_id=user, channel=chat_id_channel)
             final_status *= status
-            channel = await bot.get_chat(chat_id)
+            channel_info = await bot.get_chat(chat_id_channel)
+
             if not status:
-                invite_link = await channel.export_invite_link()
-                button = InlineKeyboardButton(text=channel.title, url=invite_link)
+                invite_link = await channel_info.export_invite_link()
+                button = InlineKeyboardButton(text=channel_info.title, url=invite_link)
                 inline_keyboard.add(button)
-                # result += (f"👉 <a href='{invite_link}'>{channel.title}</a>\n")
+
         button = InlineKeyboardButton(text="Obunani tekshirish", callback_data='check')
         inline_keyboard.add(button)
 
         if not final_status:
-            await update.message.answer(result, reply_markup=inline_keyboard, disable_web_page_preview=True)
+            if chat_type == 'message':
+                await update.message.answer(result, reply_markup=inline_keyboard, disable_web_page_preview=True)
+            elif chat_type == 'callback':
+                await update.callback_query.message.answer(result, reply_markup=inline_keyboard,
+                                                           disable_web_page_preview=True)
+                await update.callback_query.answer()  # Callback so'rovini tasdiqlash
             raise CancelHandler()
