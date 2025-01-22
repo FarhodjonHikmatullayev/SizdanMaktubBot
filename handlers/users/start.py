@@ -27,21 +27,21 @@ async def bot_start(call: types.CallbackQuery, state: FSMContext):
         role = user['role']
 
     if role == 'user':
-        await call.message.answer(text="👋Assalomu alaykum! 😊\n"
-                                       "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
-        await call.message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
-                                       "1. Faqat matn yuborishingiz mumkin.\n"
-                                       "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
-                                       "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
-                                       "Boshlash uchun matn yuboring!")
+        await call.message.edit_text(text="👋Assalomu alaykum! 😊\n"
+                                          "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await bot.send_message(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                    "1. Faqat matn yuborishingiz mumkin.\n"
+                                    "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                    "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                    "Boshlash uchun matn yuboring!", chat_id=user_telegram_id)
     else:
-        await call.message.answer(text="👋Assalomu alaykum! 😊\n"
-                                       "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
-        await call.message.answer(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
-                                       "1. Faqat matn yuborishingiz mumkin.\n"
-                                       "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
-                                       "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
-                                       "Boshlash uchun matn yuboring!")
+        await call.message.edit_text(text="👋Assalomu alaykum! 😊\n"
+                                          "Siz “Sizdan Maktublar” botiga xush kelibsiz!")
+        await bot.send_message(text="Iltimos, qoidalar bilan tanishib chiqing:  \n"
+                                    "1. Faqat matn yuborishingiz mumkin.\n"
+                                    "2. Reklama, linklar va haqoratli so‘zlar taqiqlangan.\n"
+                                    "3. Matningiz 300 belgidan oshmasligi kerak.\n\n"
+                                    "Boshlash uchun matn yuboring!", chat_id=user_telegram_id)
 
 
 @dp.message_handler(CommandStart(), state="*")
